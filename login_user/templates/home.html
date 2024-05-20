@@ -8,7 +8,7 @@
         <head>
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <title>Intellex</title>
+            <title>Law Guardian</title>
             <meta name="description" content="">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="base.css">
@@ -162,7 +162,7 @@
         <body>
             <section class="home-section">
                 <nav class="navbar">
-                    <h2 class="intellex" id="intellex">Intellex</h2>
+                    <h2 class="intellex" id="intellex">Law Guardian</h2>
                     {% if user.is_authenticated %}
                         <p>Your name is - {{user.first_name}} {{user.last_name}}</p>
                         <p>Your email is - {{user.email}}</p>
@@ -180,13 +180,12 @@
                     {% endif %}
                 </nav>
                 <div class="home-section-2">
-                <h2>Welcome to Intellex</h2>
-                <p>Login to get started...</p>
+                <h2>Welcome to Law Guardian</h2>
                               
 
                 {% if user.is_authenticated %}
                     <p>You are welcome on Home Page</p>
-                    <div class="fir-button">   <a href="C:\Users\Sejal Sachin Jadhav\Downloads\palm_chatbot (2)\palm_chatbot\templates\index.html" ><strong>Register FIR</strong></a>   </div>
+                    <div class="fir-button">   <a href="http://127.0.0.1:5000/" ><strong>Register FIR</strong></a>   </div>
 
                     
                 </div>
