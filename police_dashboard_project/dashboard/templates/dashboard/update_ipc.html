@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update IPC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("https://livedemo00.template-help.com/joomla_52578/images/slider/slide-1.jpg?1695503016028") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0; /* Reset default margin */
+            padding: 0; /* Reset default padding */
+            color: #fff;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            font-weight: 1000;
+            display: inline-block; /* Display items horizontally */
+        }
+
+        .navbar a:hover {
+            color: yellow;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        form {
+            margin: 20px auto;
+            width: 50%;
+            text-align: center;
+        }
+
+        form input[type="text"],
+        form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="#">Home</a>
+    <a href="#">Document Generator</a>
+    <a href="#">Generate FIR</a>
+  </div>
+  <h1>Update IPC</h1>
+  <form method="post" action="{% url 'update_ipc' fir.id %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Update IPC">
+  </form>
+</body>
+</html>

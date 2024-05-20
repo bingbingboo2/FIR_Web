@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search FIR</title>
+</head>
+<body>
+    <h1>Search FIR</h1>
+    <form method="get" action="{% url 'search_fir' %}">
+        {% csrf_token %}
+        <label for="fir_number">FIR Number:</label>
+        <input type="text" name="fir_number" id="fir_number" placeholder="Enter FIR Number" value="{{ search_form.fir_number.value }}">
+        
+        <label for="ipc">IPC:</label>
+        <input type="text" name="ipc" id="ipc" placeholder="Enter IPC" value="{{ search_form.ipc.value }}">
+        
+        <input type="submit" value="Search">
+    </form>
+    
+    <h2>Search Results</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>FIR Number</th>
+                <th>Complainant Name</th>
+                <th>Time</th>
+                <th>IPC Applied</th>
+                <th>View FIR</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fir in fir_list %}
+            <tr>
+                <td>{{ fir.fir_number }}</td>
+                <td>{{ fir.complainant_name }}</td>
+                <td>{{ fir.time }}</td>
+                <td>{{ fir.ipc_applied }}</td>
+                <td><a href="{{ fir.pdf_fir.url }}" target="_blank">View FIR</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

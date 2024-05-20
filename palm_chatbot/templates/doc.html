@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI-powered Legal Documentation Assistant</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url("https://livedemo00.template-help.com/joomla_52578/images/slider/slide-1.jpg?1695503016028") no-repeat center center fixed;
+      background-size: cover;
+      margin: 0; /* Reset default margin */
+      padding: 0; /* Reset default padding */
+    }
+
+    .header {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      padding: 10px 0;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .header a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 1.2em;
+      font-weight: 1000;
+    }
+
+    .header a:hover {
+      color: yellow;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      padding-top: 50px;
+      color: #fff;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    input[type="text"],
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="#">Home</a>
+    <a href="#">Document Generator</a>
+    <a href="#">Generate FIR</a>
+  </div>
+  <div class="container">
+    <h1>AI-powered Legal Documentation Assistant</h1>
+    <form action="/chat" method="POST">
+      <input type="text" name="input" placeholder="Enter your question here...">
+      <input type="submit" value="Chat">
+    </form>
+    <div id="response"></div>
+  </div>
+
+  <script>
+    // Get the response from the AI-powered legal documentation assistant.
+    async function getChatResponse() {
+      const response = await fetch("/chat", {
+        method: "POST",
+        body: {
+          input: document.querySelector("input[name='input']").value
+        }
+      });
+
+      const chatResponse = await response.json();
+
+      // Display the response in the DOM.
+      document.querySelector("#response").innerHTML = chatResponse.response;
+    }
+
+    // Add an event listener to the chat button to call the getChatResponse() function.
+    document.querySelector("input[type='submit']").addEventListener("click", getChatResponse);
+  </script>
+</body>
+</html>

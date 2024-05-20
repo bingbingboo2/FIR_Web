@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add FIR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("https://livedemo00.template-help.com/joomla_52578/images/slider/slide-1.jpg?1695503016028") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0; /* Reset default margin */
+            padding: 0; /* Reset default padding */
+            color: #fff;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            font-weight: 1000;
+            display: inline-block; /* Display items horizontally */
+        }
+
+        .navbar a:hover {
+            color: yellow;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        form {
+            margin: 20px auto;
+            width: 50%;
+            text-align: center;
+        }
+
+        form input[type="text"],
+        form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            margin: 20px auto;
+            width: fit-content;
+            padding: 10px 20px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="#">Home</a>
+    <a href="#">Document Generator</a>
+    <a href="#">Generate FIR</a>
+  </div>
+  <h1>Add FIR</h1>
+  <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Submit</button>
+  </form>
+  <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

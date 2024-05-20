@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FIRST INFORMATION REPORT</title>
+    <style>
+        .box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    
+</head>
+<body>
+
+<h1>FIRST INFORMATION REPORT</h1>
+<h2>(Under Section 154 Cr.P.C.)</h2>
+
+
+
+
+
+<form  id="fir_form">
+    <!-- Existing form fields (District, P.S., Year, FIR No., etc.) -->
+    <label>1. District:</label>
+    <input type="text" name="district" required>
+    
+    <label>P.S.:</label>
+    <input type="text" name="ps" required>
+    
+    <label>Year:</label>
+    <input type="text" name="year" required>
+    
+    <label>FIR No.:</label>
+    <input type="text" name="fir_no" required>
+    
+    <label>Date and Time of FIR:</label>
+    <input type="datetime-local" name="date_time_fir" required>
+
+    <div class="box">
+      <strong>IPC Section:</strong> {{ ipc_section }}
+   </div>
+    
+   <h3>3. (a) Occurrence of offense:</h3>
+    <label>Day:</label>
+    <input type="text" name="day" required><br>
+    
+    <label>Date from:</label>
+    <input type="date" name="date_from" required><br>
+    
+    <label>Date to:</label>
+    <input type="date" name="date_to" required><br>
+    
+    <label>Time Period:</label>
+    <input type="text" name="time_period" required><br>
+    
+    <label>Time From:</label>
+    <input type="time" name="time_from" required><br>
+    
+    <label>Time to:</label>
+    <input type="time" name="time_to" required><br>
+
+    <h3>(b) Information received at P.S.</h3>
+    <label>Date:</label>
+    <input type="date" name="received_date" required><br>
+    
+    <label>Time:</label>
+    <input type="time" name="received_time" required><br>
+
+    <h3>(c) General Diary Reference Entry No.</h3>
+    <label>Entry No.:</label>
+    <input type="text" name="entry_no" required><br>
+    
+    <label>Date and Time:</label>
+    <input type="datetime-local" name="entry_date_time" required><br>
+
+    <label>4. Type of Information:</label>
+    <input type="text" name="type_of_info" required><br>
+    
+    <label>5. Place of Occurence:</label>
+    <h4>(a) Direction and distance from P.S.</h4>
+    <label>Beat No.:</label>
+    <input type="text" name="beat_no" required><br>
+    
+    <h4>(b) Address:</h4>
+    <textarea name="address" rows="4" cols="50" required></textarea><br>
+    
+    <h4>(c) In case, outside the limit of this Police Station,then Name of P.S.:</h4>
+    <input type="text" name="outside_ps"><br>
+    
+    <!-- Add rest of the fields here -->
+
+<label>6. Complainant / Informant</label><br>
+
+<label>(a) Name:</label>
+<input type="text" name="complainant_name" required><br>
+
+<label>(b) Father's/Husband's Name:</label>
+<input type="text" name="father_husband_name" required><br>
+
+<label>(c) Date/Year of Birth:</label>
+<input type="date" name="dob" required><br>
+
+<label>(d) Nationality:</label>
+<input type="text" name="nationality" required><br>
+
+<label>(e) UID No.:</label>
+<input type="text" name="uid_no" required><br>
+
+<label>(f) Passport No.:</label>
+<input type="text" name="passport_no" required><br>
+
+<label>Date of Issue:</label>
+<input type="date" name="passport_issue_date" required><br>
+
+<label>Place of Issue:</label>
+<input type="text" name="passport_issue_place" required><br>
+
+<label>(g) ID Details (Ration Card, Voter ID Card, Passport, UID No., Driving License, PAN):</label>
+<textarea name="id_details" rows="4" cols="50" required></textarea><br>
+
+<label>(h) Occupation:</label>
+<input type="text" name="occupation" required><br>
+
+<label>(i) Address:</label>
+<textarea name="complainant_address" rows="4" cols="50" required></textarea><br>
+
+<label>(j) Phone number Mobile:</label>
+<input type="text" name="phone_mobile" required><br>
+
+<label>7. Details of known / suspected / unknown accused with full particulars:</label>
+<textarea name="accused_details" rows="4" cols="50" required></textarea><br>
+
+<label>Accused More Than:</label>
+<input type="number" name="accused_count" required><br>
+
+<label>8. Reasons for delay in reporting by the complainant / informant:</label>
+<textarea name="delay_reasons" rows="4" cols="50" required></textarea><br>
+
+<label>9. Particulars of properties of interest:</label>
+<textarea name="property_details" rows="4" cols="50" required></textarea><br>
+
+<label>10. Total value of property (In Rs/-)</label>
+<input type="text" name="property_value" required><br>
+
+<label>11. Inquest Report / U.D. case No., if any</label>
+<input type="text" name="inquest_report_no"><br>
+
+<div class="box">
+  <strong>13. Crime Description:</strong> {{ ai_crime_description }}
+</div>
+
+
+
+<label>13. Action taken:</label><br>
+<input type="radio" name="action_taken" value="Registered the case and took up the investigation" required> Registered the case and took up the investigation<br>
+<input type="radio" name="action_taken" value="Directed (Name of I.O.)" required> Directed (Name of I.O.)<br>
+<input type="radio" name="action_taken" value="Refused investigation due to" required> Refused investigation due to<br>
+<input type="radio" name="action_taken" value="Transferred to P.S." required> Transferred to P.S.<br>
+
+<label>F.I.R. read over to the complainant / informant, admitted to be correctly recorded and a copy given to the complainant /informant, free of cost.</label><br>
+<input type="checkbox" name="fir_read_over" required> I agree<br>
+
+<label>Signature of Officer in charge, Police Station</label><br>
+
+<label>Name:</label>
+<input type="text" name="officer_name" required><br>
+
+<label>Rank:</label>
+<input type="text" name="officer_rank" required><br>
+
+<label>No.:</label>
+<input type="text" name="officer_no" required><br>
+
+<label>14. Signature / Thumb impression of the complainant / informant</label><br>
+<input type="text" name="complainant_signature" required><br>
+
+<label>15. Date and time of dispatch to the court:</label><br>
+<input type="datetime-local" name="dispatch_date_time" required><br>
+<!-- Add hidden input fields to include IPC Section and Crime Description in the form data -->
+    <input type="hidden" name="ipc_section" value="{{ ipc_section }}">
+    <input type="hidden" name="crime_description" value="{{ ai_crime_description }}">
+
+    
+
+    <input type="hidden" name="html_content" id="html_content">
+    <input type="button" value="Submit" onclick="submitForm()">
+    <input type="button" id="pdfButton" value="Convert to PDF">
+</form>
+
+<script>
+    function generatePDF() {
+    var pdf = new jsPDF('p', 'pt', 'letter');
+    pdf.canvas.height = 72 * 11;
+    pdf.canvas.width = 72 * 8.5;
+
+    // Retrieve form values
+    var form = document.getElementById("fir_form");
+    var formData = new FormData(form);
+
+    // Construct HTML content for the PDF
+    var htmlContent = "<h1>FIRST INFORMATION REPORT</h1>";
+    formData.forEach(function(value, key) {
+        htmlContent += "<p><strong>" + key + ":</strong> " + value + "</p>";
+    });
+
+    // Add HTML content to PDF
+    pdf.fromHTML(htmlContent, 15, 15);
+
+    // Save the PDF
+    pdf.save('fir_report.pdf');
+}
+
+var pdfButton = document.getElementById("pdfButton");
+pdfButton.addEventListener("click", generatePDF);
+
+
+
+        
+
+</script>
+
+</body>
+</html>

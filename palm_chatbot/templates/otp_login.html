@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OTP Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("https://livedemo00.template-help.com/joomla_52578/images/slider/slide-1.jpg?1695503016028") no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            margin: 0; /* Reset default margin */
+            padding: 0; /* Reset default padding */
+        }
+
+        .header {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .header a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 1000;
+        }
+
+        .header a:hover {
+            color: yellow;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: rgba(11, 11, 11, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            color: #fcf9f9;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        input[type="text"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="http://127.0.0.1:8080">Home</a>
+        <a href="http://localhost:8502/">Document Generator</a>
+        <a href="http://127.0.0.1:5000">Generate FIR</a>
+    </div>
+    <div class="container">
+        <h1>OTP Login</h1>
+        <form method="POST">
+            <label for="username">Aadhar No:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="otp">Enter your OTP:</label>
+            <input type="text" id="otp" name="otp" required>
+            <input type="submit" value="Submit">
+        </form>
+        <form method="POST" action="/generate_otp">
+            <input type="hidden" name="username" value="{{ request.form.username }}">
+            <input type="submit" value="Generate OTP">
+        </form>
+    </div>
+</body>
+</html>

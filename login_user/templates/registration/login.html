@@ -1,0 +1,164 @@
+<!-- <h1>Built-In Login Logout</h1> -->
+<h2>Login</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+</form>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 350px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .login-method {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .toggle-form {
+            text-align: center;
+        }
+
+        .toggle-form label {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .toggle-form label:hover {
+            color: #007BFF;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <div class="login-method">
+            <label for="login-method">Choose login method:</label>
+            <select id="login-method">
+                <option value="username">Username/Password</option>
+                <option value="email">Email</option>
+            </select>
+        </div>
+        <form id="username-login" class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+            <button type="submit">Login</button>
+        </form>
+        
+        <form id="email-login" class="form-group" style="display: none;">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+            <label for="email-password">Password:</label>
+            <input type="password" id="email-password" name="email-password" placeholder="Enter your password">
+            <button type="submit">Login</button>
+        </form>
+        <div class="toggle-form">
+            <label for="toggle-username">Username/Password</label>
+            <input type="radio" id="toggle-username" name="login-toggle" value="username" checked>
+            <label for="toggle-email">Email</label>
+            <input type="radio" id="toggle-email" name="login-toggle" value="email">
+        </div>
+    </div>
+
+    <script>
+        const loginMethod = document.getElementById("login-method");
+        const usernameLogin = document.getElementById("username-login");
+        const emailLogin = document.getElementById("email-login");
+        const toggleUsername = document.getElementById("toggle-username");
+        const toggleEmail = document.getElementById("toggle-email");
+
+        loginMethod.addEventListener("change", function () {
+            if (loginMethod.value === "username") {
+                usernameLogin.style.display = "block";
+                emailLogin.style.display = "none";
+            } else if (loginMethod.value === "email") {
+                usernameLogin.style.display = "none";
+                emailLogin.style.display = "block";
+            }
+        });
+
+        toggleUsername.addEventListener("change", function () {
+            if (toggleUsername.checked) {
+                loginMethod.value = "username";
+                usernameLogin.style.display = "block";
+                emailLogin.style.display = "none";
+            }
+        });
+
+        toggleEmail.addEventListener("change", function () {
+            if (toggleEmail.checked) {
+                loginMethod.value = "email";
+                usernameLogin.style.display = "none";
+                emailLogin.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>

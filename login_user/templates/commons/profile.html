@@ -1,0 +1,361 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile Page{% endblock title %}
+
+{% block content %} 
+
+    
+
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+                text-align: center;
+            }
+            
+            form {
+                max-width: 380px;
+                /* margin: 0 auto; */
+                background-color: rgba(rgb(238, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0));
+                max-height:750px;
+                height: 100%;
+                padding: 20px;
+                border-radius: 10px;
+                position: relative;
+                top: 0px;
+                /* margin-bottom:40vh ; */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                display: flex;
+                flex-direction: column;
+                overflow-y: scroll;
+                scroll-behavior:smooth;
+                scrollbar-arrow-color: rgb(247, 144, 8);
+                margin-left: 15vh;
+            }
+            
+            form label{
+                text-align: left;
+              
+            }
+            form h2 {
+                margin-bottom: 20px;
+                margin-left: 20px;
+                color: #333;
+                text-align: center;
+                left: 100px;
+                position: relative;
+                width: min-content;
+            }
+            
+            form input
+            {
+                width: 25em;
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+                border: 1px solid #ccc;
+                border-radius: 25px;
+                
+                height: 4em;
+                background-color: rgb(0, 0, 0,0.2);
+                color: yellow;
+
+                
+            }
+
+            form input::placeholder{
+                content: 'Username';
+                color: black;
+            }
+            form button {
+                width: 25em;
+                padding: 10px;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+                border: 3px solid yellow ;
+                border-radius: 25px;
+            }
+            
+            form button {
+                background-color: yellow;
+                color: #000000;
+                /* border: 3px solid; */
+                cursor: pointer;
+                margin-left:15px ;
+            }
+            
+            form button:hover {
+                background-color: transparent;
+                color: yellow;
+                border: 3px solid yellow;
+                cursor: pointer;
+            }
+            
+            a {
+                text-decoration: none;
+                color: #ffffff;
+                margin-right: 10px;
+            }
+            
+            a:hover {
+                text-decoration: none;
+                color: yellow;
+            }
+
+            .login-heading{
+                width: 100%;
+            }
+
+            body {
+                    margin: 0;
+                    padding: 0;
+                    font-family: Arial, sans-serif;
+                }
+                section.home-section {
+                    background: url("https://livedemo00.template-help.com/joomla_52578/images/slider/slide-2.jpg?1695515016216") no-repeat center center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100vh;
+                    display: flex;
+                    flex-direction: column; 
+                    align-items: center;
+                   
+                   
+                    
+                    color: #fff;
+                }
+                section.home-section #intellex{
+                    font-size: 4em;
+                    color: yellow;
+                    margin: 20px;
+                    padding: 20px;
+                    flex-grow: 5;
+                    
+                    
+                }
+                .navbar {
+                    position: relative;
+                    /* top: 0; */
+                    width: 100%;
+                    display: flex;
+                    /* justify-content: space-between; */
+                    align-items: center;
+                    height: 15vh;
+                    
+                    /* background-color: rgba(0, 0, 0, 0.5); */
+                   
+                    
+                }
+                .navbar a {
+                    text-decoration: none;
+                    color: #fff;
+                    font-size: 1.2em;
+                    font-weight: 1000;
+                    justify-content: end;
+                    margin: 15px;
+                    padding: 10px;
+                }
+
+                .navbar p{
+                    text-decoration: none;
+                    color: #fff;
+                    font-size: 1em;
+                    font-weight: 1000;
+                    justify-content: end;
+                    margin: 15px;
+                    padding: 10px;
+                    flex-direction: row-reverse;
+
+                }
+                .navbar a:hover {
+                    color: yellow;
+                }
+                .navbar a:active{
+                    color: yellow;
+                }
+
+                .navbar-home h2{
+                    font-size: 4em;
+                    color: rgb(255, 255, 255);
+                    margin: 20px;
+                    padding: 20px;
+                    justify-content: end;
+                    
+                }
+                .navbar-home{
+                    text-decoration: none;
+                    color: #fff;
+                    font-size: 1.2em;
+                    font-weight: 1000;
+                    margin: 15px;
+                    padding: 10px;
+                    justify-content: flex-end;
+                    flex-grow: 20;
+                    text-align: end;
+
+                }
+
+                .home-section-2{
+                    text-decoration: none;
+                    color: #fff;
+                    font-size: 3em;
+                    font-weight: 1000;
+                    
+                }
+
+                .fir-button{
+                    position: relative;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+
+                }
+
+                .fir-button button{
+                    padding: 15px;
+                    padding-left: 30px;
+                    padding-right: 30px;
+                    border: 2px ;
+                    border-radius: 10px;
+                    background-color: yellow;
+                    font-size: 1.2rem;
+                    
+                }
+                .fir-button button:hover{
+                    padding: 15px;
+                    padding-left: 30px;
+                    padding-right: 30px;
+                    border: 3px solid;
+                    border-radius: 10px;
+                    border-color: yellow;
+                    background-color: black;
+                    font-size: 1.2rem;
+                    color: yellow;
+                    
+                }
+
+                .home-section-2 P{
+                    text-decoration: none;
+                    color: #fff;
+                    font-size:2rem;
+                    font-weight: 700;
+                    justify-content: end;
+                    margin: 0 0 0 15px;
+                    padding: 10px;
+                    margin-top: 0px;
+                    
+                    text-align: center;
+                    width: 100%;
+                    flex-direction: row-reverse;
+                }
+
+                #login-link{
+                    color: yellow;
+                }
+
+                .sides{
+                    width: 80%;
+                    /* height: inherit; */
+                    display: flex;
+                    height: 620px;
+                    justify-content: space-between;
+                    border: 2px;
+                    border-radius: 20px;
+                    background-color: rgb(0, 0, 0,0.2);
+                }
+                .side-1{
+                    width: 50%;
+                    height: 620px;
+                background: url('https://images.unsplash.com/photo-1532077795300-c4b487f601f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y3JpbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60') , no-repeat;
+                background-size: cover;
+                border: 2px;
+                border-radius: 20px;
+                }
+
+                .side-2{
+                    width: 50%;
+                    height: 500px;
+                    justify-content: flex-end;
+                    background-color: rgba(rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), 0.5);
+                }
+                
+                ::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey;  */
+  border-radius: 0px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: yellow; 
+  border-radius: 0px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  /* background: #b30000;  */
+}
+            </style>
+    </head>
+    <body>
+        <section class="home-section">
+            <nav class="navbar">
+                <h2 class="intellex" id="intellex">Intellex</h2>
+
+            <nav class="navbar-home">
+                <a href="{% url 'home' %}">Back</a>
+                <!-- <a href="{% url 'login' %}" >Login</a> -->
+                <!-- <a href="{% url 'password_reset' %}">Forgot Password</a> -->
+                <!-- <a href="{% url 'signup' %}" id="login-link">Sign Up</a> -->
+            </nav>
+        </nav>
+       
+        <div class="sides">
+        <div class="side-1">
+            <!-- <img src="https://w0.peakpx.com/wallpaper/583/538/HD-wallpaper-ladies-police-khaki-uniform-police-officer-indian-police.jpg" alt=""> -->
+        </div>
+        <div class="side-2">
+            <div class="login-heading">
+                <h2> Edit Your Profile</h2>
+                </div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update</button>
+            <br><br>
+            <div style="justify-content: space-between;">
+            <a href="{% url 'profile' user.id %}"  style="padding-right:15vh ;"><-Back</a>
+            
+            <!-- <a href="{% url 'login' %}">Login</a> -->
+            </div>
+            <!-- <a href="{% url 'home' %}">Home</a> -->
+        </form>
+    </div>
+        </div>
+    </section>
+        <script src="" async defer></script>
+    </body>
+</html>
+{% endblock content %}

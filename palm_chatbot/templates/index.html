@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Crime Description Chatbot</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url("https://livedemo00.template-help.com/joomla_52578/images/slider/slide-1.jpg?1695503016028") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .header {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .chat-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+        }
+
+        .user-message {
+            background-color: #dff2c2;
+            border-radius: 5px;
+            padding: 5px 10px;
+            display: inline-block;
+        }
+
+        .bot-message {
+            background-color: #c2eafc;
+            border-radius: 5px;
+            padding: 5px 10px;
+            display: inline-block;
+        }
+
+        .fir-details {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .show-fir-button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4caf50;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            font-weight: 1000;
+        }
+
+        .navbar a:hover {
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a href="http://127.0.0.1:8080">Login</a>
+    <a href="http://127.0.0.1:5000">Generate FIR</a>
+    <a href="http://127.0.0.1:8502">Document Generator</a>
+</div>
+<div class="chat-container">
+    {% for i in range(questions|length) %}
+    <div class="chat-message">
+        <div class="bot-message">
+            Bot: {{ questions[i] }}
+        </div>
+        {% if i < answers|length %}
+        <div class="user-message">
+            User: {{ answers[i] }}
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    {% if final %}
+    <div class="chat-message">
+        <div class="bot-message">
+            Bot: {{ ai_crime_description }}
+        </div>
+    </div>
+    <div class="chat-message">
+        <div class="bot-message">
+            Bot: IPC Section: {{ ipc_section }}
+        </div>
+    </div>
+    <button class="show-fir-button" onclick="toggleFIRDetails()">Show FIR Details</button>
+    <div class="fir-details" id="firDetails">
+        <p><strong>IPC Section:</strong> {{ ipc_section }}</p>
+        <p><strong>Crime Description:</strong> {{ ai_crime_description }}</p>
+    </div>
+    {% else %}
+    <form action="/" method="post">
+        <input type="text" id="user_answer" name="user_answer" required>
+        <input type="submit" value="Submit">
+    </form>
+    {% endif %}
+</div>
+
+<script>
+    function toggleFIRDetails() {
+        var firDetails = document.getElementById("firDetails");
+        if (firDetails.style.display === "none" || firDetails.style.display === "") {
+            firDetails.style.display = "block";
+        } else {
+            firDetails.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>
