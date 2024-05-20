@@ -6,6 +6,9 @@ cd login_user
 python manage.py runserver 8000
 
 
+
+chatbot:
+cd palm_chatbot
 py otp.py runserver 8080
 
 
