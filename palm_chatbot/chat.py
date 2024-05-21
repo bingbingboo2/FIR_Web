@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import google.generativeai as palm
-#import pdfkit
-#import os
+# import pdfkit
+# import os
 
 app = Flask(__name__)
 
@@ -33,6 +33,7 @@ crime_description_questions = [
 answers = []
 ai_crime_description = None
 
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     global question_index, ipc_section, ai_crime_description
@@ -50,21 +51,25 @@ def index():
             crime_description = ", ".join(answers)
 
             # Predict IPC section
-            response = palm.chat(messages=f"The crime description is: {crime_description}", temperature=0.2, context="give indian penal codes with punishments on basis of question answered by user.", examples=examples)
+            response = palm.chat(messages=f"The crime description is: {
+                                 crime_description}", temperature=0.2, context="give indian penal codes with punishments on basis of question answered by user.", examples=examples)
             ipc_section = response.last
 
             # Generate AI-generated crime description
-            ai_crime_description_response = palm.chat(messages=f"The IPC section is: {ipc_section}", temperature=0.2, context="Generate a crime description based on the answers given by the user")
+            ai_crime_description_response = palm.chat(messages=f"The IPC section is: {
+                                                      ipc_section}", temperature=0.2, context="Generate a crime description based on the answers given by the user")
             ai_crime_description = ai_crime_description_response.last
 
             return redirect(url_for('fir_page'))
 
     return render_template('index.html', questions=crime_description_questions[:question_index + 1], answers=answers, final=False)
 
+
 @app.route('/fir_page')
 def fir_page():
     global ipc_section, ai_crime_description
     return render_template('fir.html', ipc_section=ipc_section, ai_crime_description=ai_crime_description)
 
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
