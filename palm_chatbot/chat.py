@@ -1,7 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
+from datetime import datetime
+import boto3
+from botocore.exceptions import NoCredentialsError
+from flask import send_file
+from io import BytesIO
 import google.generativeai as palm
-# import pdfkit
-# import os
+import os
 
 app = Flask(__name__)
 
@@ -33,6 +37,38 @@ crime_description_questions = [
 answers = []
 ai_crime_description = None
 
+# AWS S3 credentials
+
+
+AWS_ACCESS_KEY_ID = 'AKIAVRUVSLJM3VETRS5E '
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'firpdf'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'us-east-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL =  None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+# Function to upload file to S3
+
+
+def upload_to_s3(file_data, bucket, s3_file):
+    s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY_ID,
+                      aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+
+    try:
+        s3.put_object(Body=file_data, Bucket=bucket, Key=s3_file)
+        print("Upload Successful")
+        return True
+    except NoCredentialsError:
+        print("Credentials not available")
+        return False
+    except Exception as e:
+        print(f"Error uploading to S3: {e}")
+        return False
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -51,24 +87,52 @@ def index():
             crime_description = ", ".join(answers)
 
             # Predict IPC section
-            response = palm.chat(messages=f"The crime description is: {
-                                 crime_description}", temperature=0.2, context="give indian penal codes with punishments on basis of question answered by user.", examples=examples)
+            response = palm.chat(messages=f"The crime description is: {crime_description}", temperature=0.2, context="give indian penal codes with punishments on basis of question answered by user.", examples=examples)
             ipc_section = response.last
 
             # Generate AI-generated crime description
-            ai_crime_description_response = palm.chat(messages=f"The IPC section is: {
-                                                      ipc_section}", temperature=0.2, context="Generate a crime description based on the answers given by the user")
+            ai_crime_description_response = palm.chat(messages=f"The IPC section is: {ipc_section}", temperature=0.2, context="Generate a crime description based on the answers given by the user")
             ai_crime_description = ai_crime_description_response.last
 
-            return redirect(url_for('fir_page'))
+            return redirect(url_for('generate_pdf'))
 
     return render_template('index.html', questions=crime_description_questions[:question_index + 1], answers=answers, final=False)
+
+
+@app.route('/generate_pdf', methods=['GET', 'POST'])
+def generate_pdf():
+    global ipc_section, ai_crime_description
+
+    # Construct HTML content for the PDF
+    html_content = "<h1>FIRST INFORMATION REPORT</h1>"
+    html_content += "<p><strong>IPC Section:</strong> " + ipc_section + "</p>"
+    html_content += "<p><strong>Crime Description:</strong> " + \
+        ai_crime_description + "</p>"
+    # Add more form fields to the PDF content as needed
+
+    # Generate PDF using jspdf
+    pdf = create_pdf(html_content)
+
+    # Upload PDF to S3
+    if pdf:
+        upload_to_s3(pdf, AWS_STORAGE_BUCKET_NAME, 'fir_report.pdf')
+
+    return redirect(url_for('fir_page'))
 
 
 @app.route('/fir_page')
 def fir_page():
     global ipc_section, ai_crime_description
     return render_template('fir.html', ipc_section=ipc_section, ai_crime_description=ai_crime_description)
+
+
+def create_pdf(html_content):
+    from xhtml2pdf import pisa
+
+    pdf_data = BytesIO()
+    pisa.CreatePDF(BytesIO(html_content.encode('utf-8')), pdf_data)
+
+    return pdf_data.getvalue()
 
 
 if __name__ == '__main__':
