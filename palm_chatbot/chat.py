@@ -53,17 +53,16 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Function to upload file to S3
 
-
 def upload_to_s3(file_data, bucket, s3_file):
     s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY_ID,
                       aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-
     try:
-        s3.put_object(Body=file_data, Bucket=bucket, Key=s3_file)
+        response = s3.put_object(Body=file_data, Bucket=bucket, Key=s3_file)
         print("Upload Successful")
+        print("S3 response:", response)
         return True
     except NoCredentialsError:
-        print("Credentials are not available")
+        print("Credentials not available")
         return False
     except Exception as e:
         print(f"Error uploading to S3: {e}")
