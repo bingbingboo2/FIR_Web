@@ -63,7 +63,7 @@ def upload_to_s3(file_data, bucket, s3_file):
         print("Upload Successful")
         return True
     except NoCredentialsError:
-        print("Credentials not available")
+        print("Credentials are not available")
         return False
     except Exception as e:
         print(f"Error uploading to S3: {e}")
