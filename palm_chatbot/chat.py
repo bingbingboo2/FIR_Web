@@ -97,19 +97,26 @@ def index():
 
     return render_template('index.html', questions=crime_description_questions[:question_index + 1], answers=answers, final=False)
 
-
 @app.route('/generate_pdf', methods=['GET', 'POST'])
 def generate_pdf():
     global ipc_section, ai_crime_description
 
     # Construct HTML content for the PDF
     html_content = "<h1>FIRST INFORMATION REPORT</h1>"
-    html_content += "<p><strong>IPC Section:</strong> " + ipc_section + "</p>"
-    html_content += "<p><strong>Crime Description:</strong> " + \
-        ai_crime_description + "</p>"
-    # Add more form fields to the PDF content as needed
+    
+    # Check if ipc_section is not None before concatenating
+    if ipc_section:
+        html_content += "<p><strong>IPC Section:</strong> " + ipc_section + "</p>"
+    else:
+        html_content += "<p><strong>IPC Section:</strong> Not specified</p>"
 
-    # Generate PDF using jspdf
+    # Add crime description
+    if ai_crime_description:
+        html_content += "<p><strong>Crime Description:</strong> " + ai_crime_description + "</p>"
+    else:
+        html_content += "<p><strong>Crime Description:</strong> Not specified</p>"
+
+    # Generate PDF using xhtml2pdf
     pdf = create_pdf(html_content)
 
     # Upload PDF to S3
@@ -117,7 +124,6 @@ def generate_pdf():
         upload_to_s3(pdf, AWS_STORAGE_BUCKET_NAME, 'fir_report.pdf')
 
     return redirect(url_for('fir_page'))
-
 
 @app.route('/fir_page')
 def fir_page():
