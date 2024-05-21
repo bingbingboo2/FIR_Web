@@ -189,38 +189,52 @@
     <input type="button" value="Submit" onclick="submitForm()">
     <input type="button" id="pdfButton" value="Convert to PDF">
 </form>
-
 <script>
-    function generatePDF() {
-    var pdf = new jsPDF('p', 'pt', 'letter');
-    pdf.canvas.height = 72 * 11;
-    pdf.canvas.width = 72 * 8.5;
-
-    // Retrieve form values
-    var form = document.getElementById("fir_form");
-    var formData = new FormData(form);
-
-    // Construct HTML content for the PDF
-    var htmlContent = "<h1>FIRST INFORMATION REPORT</h1>";
-    formData.forEach(function(value, key) {
-        htmlContent += "<p><strong>" + key + ":</strong> " + value + "</p>";
-    });
-
-    // Add HTML content to PDF
-    pdf.fromHTML(htmlContent, 15, 15);
-
-    // Save the PDF
-    pdf.save('fir_report.pdf');
-}
-
-var pdfButton = document.getElementById("pdfButton");
-pdfButton.addEventListener("click", generatePDF);
-
-
-
+    function submitForm() {
+        var form = document.getElementById("fir_form");
+        var formData = new FormData(form);
         
+        // Send form data to server using AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/generate_pdf");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Redirect to home page after successful submission
+                window.location.href = "http://54.226.162.112:5000/";
+            }
+        };
+        xhr.send(formData);
+    }
 
+    function generatePDF() {
+        var pdf = new jsPDF('p', 'pt', 'letter');
+        pdf.canvas.height = 72 * 11;
+        pdf.canvas.width = 72 * 8.5;
+
+        // Retrieve form values
+        var form = document.getElementById("fir_form");
+        var formData = new FormData(form);
+
+        // Construct HTML content for the PDF
+        var htmlContent = "<h1>FIRST INFORMATION REPORT</h1>";
+        formData.forEach(function(value, key) {
+            htmlContent += "<p><strong>" + key + ":</strong> " + value + "</p>";
+        });
+
+        // Add HTML content to PDF
+        pdf.fromHTML(htmlContent, 15, 15);
+
+        // Save the PDF
+        pdf.save('fir_report.pdf');
+    }
+
+    var pdfButton = document.getElementById("pdfButton");
+    pdfButton.addEventListener("click", function() {
+        submitForm();
+        generatePDF();
+    });
 </script>
+
 
 </body>
 </html>
