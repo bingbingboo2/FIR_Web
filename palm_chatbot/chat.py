@@ -40,8 +40,8 @@ ai_crime_description = None
 # AWS S3 credentials
 
 
-AWS_ACCESS_KEY_ID = ' '
-AWS_SECRET_ACCESS_KEY = ''
+AWS_ACCESS_KEY_ID = 'AKIAVRUVSLJM53JK2IPG'
+AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'firpdf'
 AWS_S3_SIGNATURE_NAME = 's3v4',
 AWS_S3_REGION_NAME = 'us-east-1'
@@ -132,7 +132,7 @@ def fir_page():
 
 
 def create_pdf(html_content):
-    from xhtml2pdf import pisa
+    from     import pisa
 
     pdf_data = BytesIO()
     pisa.CreatePDF(BytesIO(html_content.encode('utf-8')), pdf_data)
