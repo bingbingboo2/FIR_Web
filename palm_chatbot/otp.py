@@ -29,7 +29,7 @@ def otp_login():
 def generate_otp():
     otp = totp.now()
     print(f"Generated OTP: {otp}")  # Print OTP to the terminal
-    return render_template('http://174.129.169.193:8090/')
+    return render_template('\police_dashboard_project\dashboard\templates\dashboard\dashboard.html')
 
 
 
