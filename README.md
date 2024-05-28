@@ -1,4 +1,7 @@
 run 
+sudo apt install pipx
+pipx ensurepath
+pipx install django
 
 
 login user:
@@ -36,6 +39,9 @@ sudo apt install python3-pip -y
 python3 -m venv myenv
 
 source myenv/bin/activate
+
+pip install django
+
 
 git clone https://github.com/diyshaikh/FIR_Web.git
 
