@@ -25,11 +25,11 @@ def otp_login():
     
     return render_template('otp_login.html')
 
-@app.route('/otp_login.html', methods=['POST'])
+@app.route('/generate_otp', methods=['POST'])
 def generate_otp():
     otp = totp.now()
     print(f"Generated OTP: {otp}")  # Print OTP to the terminal
-    return "OTP generated and displayed in the terminal."
+    return render_template('otp_login.html')
 
 
 
