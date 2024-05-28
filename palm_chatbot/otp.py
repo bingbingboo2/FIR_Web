@@ -31,5 +31,8 @@ def generate_otp():
     print(f"Generated OTP: {otp}")  # Print OTP to the terminal
     return "OTP generated and displayed in the terminal."
 
+
+
+
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run(host='0.0.0.0', port=5600, debug=True)
