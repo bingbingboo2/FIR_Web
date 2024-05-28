@@ -74,9 +74,9 @@
 </head>
 <body>
     <div class="header">
-        <a href="http://127.0.0.1:8000">Home</a>
+        <a href="http://174.129.169.193:8000/">Home</a>
         <a href="http://localhost:8502/">Document Generator</a>
-        <a href="http://127.0.0.1:8880">Generate FIR</a>
+        <a href="http://174.129.169.193:5000/">Generate FIR</a>
     </div>
     <div class="container">
         <h1>OTP Login</h1>
@@ -91,6 +91,7 @@
         <form method="POST" action="/generate_otp">
             <input type="hidden" name="username" value="{{ request.form.username }}">
             <input type="submit" value="Generate OTP">
+            
         </form>
     </div>
 </body>
