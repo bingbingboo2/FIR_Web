@@ -132,7 +132,7 @@ def fir_page():
 
 
 def create_pdf(html_content):
-    from     import pisa
+    from import pisa
 
     pdf_data = BytesIO()
     pisa.CreatePDF(BytesIO(html_content.encode('utf-8')), pdf_data)
